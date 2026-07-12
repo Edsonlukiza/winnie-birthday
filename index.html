@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Winnie 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient background layers, present throughout -->
+  <div class="bg-gradient" aria-hidden="true"></div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="balloons" id="balloons" aria-hidden="true"></div>
+  <div class="ambient-particles" id="ambientParticles" aria-hidden="true"></div>
+
+  <!-- Overlay layers for effects -->
+  <div class="flash" id="flash" aria-hidden="true"></div>
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+  <div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+  <div class="fireworks-layer" id="fireworksLayer" aria-hidden="true"></div>
+  <div class="sparkle-layer" id="sparkleLayer" aria-hidden="true"></div>
+
+  <main class="stage">
+
+    <!-- SCENE 1: WELCOME -->
+    <section class="scene scene--welcome" id="scene-welcome">
+      <p class="eyebrow">a small secret, just for you</p>
+      <h1 class="welcome-line" id="welcomeLine">Someone has a surprise waiting<span class="dots">...</span> 🎁</h1>
+      <p class="welcome-sub" id="welcomeSub">Click the gift to open it</p>
+    </section>
+
+    <!-- SCENE 2 & 3: GIFT BOX -->
+    <section class="scene scene--gift" id="scene-gift">
+      <div class="gift-wrap" id="giftWrap">
+        <div class="gift-shadow" aria-hidden="true"></div>
+        <button class="gift-box" id="giftBox" aria-label="Open your gift">
+          <div class="gift-glow" aria-hidden="true"></div>
+          <div class="gift-lid" id="giftLid">
+            <div class="ribbon-v-top"></div>
+            <div class="ribbon-h-top"></div>
+            <div class="bow" id="bow">
+              <span class="bow-loop bow-loop--left"></span>
+              <span class="bow-loop bow-loop--right"></span>
+              <span class="bow-knot"></span>
+            </div>
+          </div>
+          <div class="gift-base">
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+          </div>
+          <div class="gift-light" id="giftLight" aria-hidden="true"></div>
+        </button>
+      </div>
+      <p class="gift-hint" id="giftHint">tap the box</p>
+    </section>
+
+    <!-- SCENE 4: SURPRISE -->
+    <section class="scene scene--surprise" id="scene-surprise">
+      <div class="cake-wrap" id="cakeWrap">
+        <div class="cake" aria-hidden="true">
+          <div class="cake-shadow"></div>
+          <div class="candle candle--1"><span class="flame"></span></div>
+          <div class="candle candle--2"><span class="flame"></span></div>
+          <div class="candle candle--3"><span class="flame"></span></div>
+          <div class="cake-tier cake-tier--top">
+            <div class="frosting"></div>
+          </div>
+          <div class="cake-tier cake-tier--bottom">
+            <div class="frosting frosting--wide"></div>
+            <div class="drip drip--1"></div>
+            <div class="drip drip--2"></div>
+            <div class="drip drip--3"></div>
+          </div>
+          <div class="cake-plate"></div>
+        </div>
+      </div>
+
+      <div class="message-panel" id="messagePanel">
+        <h2 class="headline">🎉 Happy Birthday, <span class="name">Winnie</span>! 🎂</h2>
+        <p class="wish" id="wishText"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Controls -->
+  <div class="controls" id="controls">
+    <div class="music-group" id="musicGroup">
+      <button class="btn btn--ghost" id="musicToggle" data-playing="false">
+        <span class="btn-icon">🔊</span><span class="btn-label">Play Music</span>
+      </button>
+      <div class="song-picker" id="songPicker">
+        <button class="song-pill is-active" id="songBtn1" data-track="1">It's Your Birthday</button>
+        <button class="song-pill" id="songBtn2" data-track="2">You're Still the One</button>
+      </div>
+    </div>
+    <button class="btn btn--primary is-hidden" id="celebrateAgainBtn">
+      <span class="btn-icon">🎁</span><span class="btn-label">Celebrate Again</span>
+    </button>
+  </div>
+
+  <audio id="audioTrack1" src="song1.mp3" preload="none" loop></audio>
+  <audio id="audioTrack2" src="song2.mp3" preload="none" loop></audio>
+
+  <p class="signature">Made with ❤️ for Winnie</p>
+
+  <script src="script.js"></script>
+</body>
+</html>

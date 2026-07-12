@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const audio1 = document.getElementById('audioTrack1');
   const audio2 = document.getElementById('audioTrack2');
   const celebrateAgainBtn = document.getElementById('celebrateAgainBtn');
+  const welcomeLine = document.getElementById('welcomeLine');
+  const welcomeSub = document.getElementById('welcomeSub');
 
   const WISH_LINES = [
     'May your heart always be filled with happiness.',
@@ -212,9 +214,66 @@ document.addEventListener('DOMContentLoaded', () => {
     scene.classList.add('is-active');
   }
 
+  function typeText(element, text, onComplete) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      element.textContent = text;
+      onComplete?.();
+      return;
+    }
+
+    element.textContent = '';
+
+    let index = 0;
+    let displayed = '';
+
+    function step() {
+      if (index >= text.length) {
+        onComplete?.();
+        return;
+      }
+
+      const char = text[index];
+      displayed += char;
+      element.textContent = displayed;
+      index += 1;
+
+      const delay = /[.!?]/.test(char) ? 220 : char === ' ' ? 90 : 80 + Math.random() * 35;
+      setTimeout(step, delay);
+    }
+
+    step();
+  }
+
+  function typeWelcomeMessage() {
+    const lines = [
+      { element: document.querySelector('.eyebrow'), text: 'a small secret, just for you' },
+      { element: welcomeLine, text: 'Someone has a surprise waiting... 🎁' },
+      { element: welcomeSub, text: 'Click the gift to open it' }
+    ];
+
+    lines.forEach(({ element }) => {
+      element.textContent = '';
+    });
+
+    let currentIndex = 0;
+
+    function runNextLine() {
+      if (currentIndex >= lines.length) return;
+      const line = lines[currentIndex];
+      typeText(line.element, line.text, () => {
+        currentIndex += 1;
+        setTimeout(runNextLine, 650);
+      });
+    }
+
+    setTimeout(runNextLine, 320);
+  }
+
   function startExperience() {
     goToScene(sceneWelcome);
-    setTimeout(() => goToScene(sceneGift), 4500);
+    typeWelcomeMessage();
+    setTimeout(() => goToScene(sceneGift), 12500);
   }
 
   function typewriteWish() {

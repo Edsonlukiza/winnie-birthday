@@ -6,33 +6,33 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- element refs ---------- */
-  const sceneWelcome   = document.getElementById('scene-welcome');
-  const sceneGift      = document.getElementById('scene-gift');
-  const sceneSurprise  = document.getElementById('scene-surprise');
+  const sceneWelcome = document.getElementById('scene-welcome');
+  const sceneGift = document.getElementById('scene-gift');
+  const sceneSurprise = document.getElementById('scene-surprise');
 
-  const giftWrap  = document.getElementById('giftWrap');
-  const giftBox   = document.getElementById('giftBox');
-  const giftHint  = document.getElementById('giftHint');
+  const giftWrap = document.getElementById('giftWrap');
+  const giftBox = document.getElementById('giftBox');
+  const giftHint = document.getElementById('giftHint');
 
-  const cakeWrap      = document.getElementById('cakeWrap');
-  const messagePanel  = document.getElementById('messagePanel');
-  const wishText      = document.getElementById('wishText');
+  const cakeWrap = document.getElementById('cakeWrap');
+  const messagePanel = document.getElementById('messagePanel');
+  const wishText = document.getElementById('wishText');
 
-  const flash          = document.getElementById('flash');
-  const confettiLayer  = document.getElementById('confettiLayer');
-  const heartsLayer    = document.getElementById('heartsLayer');
+  const flash = document.getElementById('flash');
+  const confettiLayer = document.getElementById('confettiLayer');
+  const heartsLayer = document.getElementById('heartsLayer');
   const fireworksLayer = document.getElementById('fireworksLayer');
-  const sparkleLayer   = document.getElementById('sparkleLayer');
+  const sparkleLayer = document.getElementById('sparkleLayer');
 
-  const starsLayer   = document.getElementById('stars');
+  const starsLayer = document.getElementById('stars');
   const balloonsLayer = document.getElementById('balloons');
   const particlesLayer = document.getElementById('ambientParticles');
 
-  const musicToggle  = document.getElementById('musicToggle');
-  const songBtn1     = document.getElementById('songBtn1');
-  const songBtn2     = document.getElementById('songBtn2');
-  const audio1       = document.getElementById('audioTrack1');
-  const audio2       = document.getElementById('audioTrack2');
+  const musicToggle = document.getElementById('musicToggle');
+  const songBtn1 = document.getElementById('songBtn1');
+  const songBtn2 = document.getElementById('songBtn2');
+  const audio1 = document.getElementById('audioTrack1');
+  const audio2 = document.getElementById('audioTrack2');
   const celebrateAgainBtn = document.getElementById('celebrateAgainBtn');
 
   const WISH_LINES = [
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Happy Birthday, Winnie!'
   ];
 
-  const GOLD_TONES  = ['#f4c95d', '#f9dfa0', '#e8a63f'];
+  const GOLD_TONES = ['#f4c95d', '#f9dfa0', '#e8a63f'];
   const PARTY_TONES = ['#e893b8', '#f4c95d', '#b47ee5', '#7fd8c9', '#f97b7b'];
 
   let celebrationInterval = null;
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startExperience() {
     goToScene(sceneWelcome);
-    setTimeout(() => goToScene(sceneGift), 2900);
+    setTimeout(() => goToScene(sceneGift), 4500);
   }
 
   function typewriteWish() {
@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function playMusic() {
-    activeAudio().play().catch(() => {});
+    activeAudio().play().catch(() => { });
     isPlaying = true;
     musicToggle.dataset.playing = 'true';
     musicToggle.querySelector('.btn-icon').textContent = '🔇';

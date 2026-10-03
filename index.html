@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday, Winnie 🎂</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Advela</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- Ambient background layers, present throughout -->
@@ -29,7 +33,7 @@
     <!-- SCENE 1: WELCOME -->
     <section class="scene scene--welcome" id="scene-welcome">
       <p class="eyebrow">a small secret, just for you</p>
-      <h1 class="welcome-line" id="welcomeLine">Someone has a surprise waiting<span class="dots">...</span> 🎁</h1>
+      <h1 class="welcome-line" id="welcomeLine">A birthday surprise for Advela<span class="dots">...</span> 🎁</h1>
       <p class="welcome-sub" id="welcomeSub">Click the gift to open it</p>
     </section>
 
@@ -60,32 +64,78 @@
 
     <!-- SCENE 4: SURPRISE -->
     <section class="scene scene--surprise" id="scene-surprise">
-      <div class="cake-wrap" id="cakeWrap">
-        <div class="cake" aria-hidden="true">
-          <div class="cake-shadow"></div>
-          <div class="candle candle--1"><span class="flame"></span></div>
-          <div class="candle candle--2"><span class="flame"></span></div>
-          <div class="candle candle--3"><span class="flame"></span></div>
-          <div class="cake-tier cake-tier--top">
-            <div class="frosting"></div>
+      <div class="surprise-layout">
+        <div class="surprise-main">
+          <div class="cake-wrap" id="cakeWrap">
+            <div class="cake" aria-hidden="true">
+              <div class="cake-shadow"></div>
+              <div class="candle candle--1"><span class="flame"></span></div>
+              <div class="candle candle--2"><span class="flame"></span></div>
+              <div class="candle candle--3"><span class="flame"></span></div>
+              <div class="cake-tier cake-tier--top">
+                <div class="frosting"></div>
+              </div>
+              <div class="cake-tier cake-tier--bottom">
+                <div class="frosting frosting--wide"></div>
+                <div class="drip drip--1"></div>
+                <div class="drip drip--2"></div>
+                <div class="drip drip--3"></div>
+              </div>
+              <div class="cake-plate"></div>
+            </div>
           </div>
-          <div class="cake-tier cake-tier--bottom">
-            <div class="frosting frosting--wide"></div>
-            <div class="drip drip--1"></div>
-            <div class="drip drip--2"></div>
-            <div class="drip drip--3"></div>
-          </div>
-          <div class="cake-plate"></div>
-        </div>
-      </div>
 
-      <div class="message-panel" id="messagePanel">
-        <h2 class="headline">🎉 Happy Birthday, <span class="name">Winnie</span>! 🎂</h2>
-        <p class="wish" id="wishText"></p>
+          <div class="message-panel" id="messagePanel">
+            <p class="inspiration-label">A WISH FOR YOUR NEXT CHAPTER</p>
+            <h2 class="headline">Happy Birthday, <span class="name">Advela</span>!</h2>
+            <p class="wish" id="wishText"></p>
+          </div>
+
+          <button class="wish-action" id="makeWishBtn" type="button" aria-live="polite">
+            <span class="wish-action-icon" aria-hidden="true">✧</span>
+            <span class="wish-action-label">Make a wish &amp; blow out the candles</span>
+          </button>
+        </div>
+
+        <section class="memory-gallery" id="memoryGallery" aria-labelledby="memoryTitle">
+          <div class="memory-heading">
+            <p class="memory-kicker">THE LITTLE THINGS THAT MAKE YOU, YOU</p>
+            <h2 id="memoryTitle">Advela, <em>in moments.</em></h2>
+          </div>
+          <div class="memory-grid">
+            <button class="memory-photo" type="button" data-caption="A little light, all your own">
+              <img src="images/advela3.jpeg" alt="Advela in a colorful patterned outfit" loading="lazy">
+              <span>A little light, all your own</span>
+            </button>
+            <button class="memory-photo" type="button" data-caption="The best days are shared">
+              <img src="images/advela5.jpeg" alt="Advela sharing a happy outdoor moment with a friend" loading="lazy">
+              <span>The best days are shared</span>
+            </button>
+            <button class="memory-photo" type="button" data-caption="Find joy in the little things">
+              <img src="images/advela7.jpeg" alt="Advela smiling with her hands framing her face" loading="lazy">
+              <span>Find joy in the little things</span>
+            </button>
+            <button class="memory-photo" type="button" data-caption="Here's to all that is still to come">
+              <img src="images/advela8.jpeg" alt="A playful close-up portrait of Advela" loading="lazy">
+              <span>Here's to all that is still to come</span>
+            </button>
+          </div>
+        </section>
       </div>
     </section>
 
   </main>
+
+  <dialog class="photo-lightbox" id="photoLightbox" aria-label="Advela photo gallery">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close photo">&times;</button>
+    <button class="lightbox-step lightbox-previous" id="lightboxPrevious" type="button"
+      aria-label="Previous photo">&#8592;</button>
+    <figure>
+      <img id="lightboxImage" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox-step lightbox-next" id="lightboxNext" type="button" aria-label="Next photo">&#8594;</button>
+  </dialog>
 
   <!-- Controls -->
   <div class="controls" id="controls">
@@ -103,11 +153,12 @@
     </button>
   </div>
 
-  <audio id="audioTrack1" src="song1.mp3" preload="none" loop></audio>
-  <audio id="audioTrack2" src="song2.mp3" preload="none" loop></audio>
+  <audio id="audioTrack1" src="song1.mp3" preload="metadata" loop></audio>
+  <audio id="audioTrack2" src="song2.mp3" preload="metadata" loop></audio>
 
-  <p class="signature">Made with ❤️ for Winnie</p>
+  <p class="signature">Made with love for Advela</p>
 
   <script src="script.js"></script>
 </body>
+
 </html>

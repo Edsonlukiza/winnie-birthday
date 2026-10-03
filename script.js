@@ -1,5 +1,5 @@
 /* =========================================================
-   Winnie's Birthday Experience — script.js
+  Advela's Birthday Experience — script.js
    Scenes: welcome -> gift -> opening -> surprise -> celebration
 ========================================================= */
 
@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const cakeWrap = document.getElementById('cakeWrap');
   const messagePanel = document.getElementById('messagePanel');
   const wishText = document.getElementById('wishText');
+  const makeWishBtn = document.getElementById('makeWishBtn');
+  const memoryGallery = document.getElementById('memoryGallery');
+  const photoButtons = Array.from(document.querySelectorAll('.memory-photo'));
+  const photoLightbox = document.getElementById('photoLightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
 
   const flash = document.getElementById('flash');
   const confettiLayer = document.getElementById('confettiLayer');
@@ -38,13 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const welcomeSub = document.getElementById('welcomeSub');
 
   const WISH_LINES = [
-    'May your heart always be filled with happiness.',
-    'May every dream become reality.',
-    'Wishing you health, peace, laughter,',
-    'endless blessings,',
-    'and a lifetime of beautiful memories.',
+    'May every new beginning bring courage, every ordinary day a little joy,',
+    'and every dream remind you how much beauty is still ahead.',
     '',
-    'Happy Birthday, Winnie!'
+    'Keep shining as you are. Happy Birthday, Advela!'
   ];
 
   const GOLD_TONES = ['#f4c95d', '#f9dfa0', '#e8a63f'];
@@ -53,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let celebrationInterval = null;
   let currentTrack = 1;
   let isPlaying = false;
+  let wishMade = false;
+  let currentPhoto = 0;
 
   /* =========================================================
      AMBIENT BACKGROUND: stars, balloons, particles
@@ -248,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function typeWelcomeMessage() {
     const lines = [
       { element: document.querySelector('.eyebrow'), text: 'a small secret, just for you' },
-      { element: welcomeLine, text: 'Someone has a surprise waiting... 🎁' },
+      { element: welcomeLine, text: 'A birthday surprise for Advela... 🎁' },
       { element: welcomeSub, text: 'Click the gift to open it' }
     ];
 
@@ -309,6 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => cakeWrap.classList.add('is-visible'), 150);
       setTimeout(() => {
         messagePanel.classList.add('is-visible');
+        makeWishBtn.classList.add('is-visible');
+        memoryGallery.classList.add('is-visible');
         typewriteWish();
       }, 900);
     });
@@ -433,6 +440,41 @@ document.addEventListener('DOMContentLoaded', () => {
   songBtn1.addEventListener('click', () => switchTrack(1));
   songBtn2.addEventListener('click', () => switchTrack(2));
 
+  function showPhoto(index) {
+    currentPhoto = (index + photoButtons.length) % photoButtons.length;
+    const button = photoButtons[currentPhoto];
+    const image = button.querySelector('img');
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+    lightboxCaption.textContent = button.dataset.caption;
+  }
+
+  photoButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      showPhoto(index);
+      photoLightbox.showModal();
+    });
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', () => photoLightbox.close());
+  document.getElementById('lightboxPrevious').addEventListener('click', () => showPhoto(currentPhoto - 1));
+  document.getElementById('lightboxNext').addEventListener('click', () => showPhoto(currentPhoto + 1));
+  photoLightbox.addEventListener('click', event => {
+    if (event.target === photoLightbox) photoLightbox.close();
+  });
+
+  makeWishBtn.addEventListener('click', () => {
+    if (wishMade) return;
+    wishMade = true;
+    document.querySelectorAll('.flame').forEach(flame => flame.classList.add('is-extinguished'));
+    makeWishBtn.querySelector('.wish-action-icon').textContent = '✦';
+    makeWishBtn.querySelector('.wish-action-label').textContent = 'Your wish is on its way';
+    makeWishBtn.classList.add('wish-is-made');
+    spawnSparkles(22, '50%', '36%');
+    spawnConfetti(48);
+    launchFirework(50, 34);
+  });
+
   /* =========================================================
      CELEBRATE AGAIN — reset to gift scene
   ========================================================= */
@@ -450,6 +492,13 @@ document.addEventListener('DOMContentLoaded', () => {
     cakeWrap.classList.remove('is-visible');
     messagePanel.classList.remove('is-visible');
     wishText.textContent = '';
+    wishMade = false;
+    makeWishBtn.classList.remove('wish-is-made');
+    makeWishBtn.querySelector('.wish-action-icon').textContent = '✧';
+    makeWishBtn.querySelector('.wish-action-label').textContent = 'Make a wish & blow out the candles';
+    document.querySelectorAll('.flame').forEach(flame => flame.classList.remove('is-extinguished'));
+    memoryGallery.classList.remove('is-visible');
+    makeWishBtn.classList.remove('is-visible');
 
     celebrateAgainBtn.classList.add('is-hidden');
 

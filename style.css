@@ -762,6 +762,25 @@ button {
   gap: 8px;
 }
 
+.scene--surprise.is-active {
+  width: 100%;
+}
+
+.surprise-layout {
+  width: min(1060px, 100%);
+  display: grid;
+  grid-template-columns: minmax(300px, 0.88fr) minmax(380px, 1.12fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 72px);
+  margin: auto;
+}
+
+.surprise-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .cake-wrap {
   opacity: 0;
   transform: translateY(40px) scale(0.85);
@@ -912,6 +931,13 @@ button {
   animation: flicker 0.9s ease-in-out infinite alternate;
 }
 
+.flame.is-extinguished {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.3) translateY(6px);
+  transition: opacity .35s ease, transform .35s ease;
+  animation: none;
+}
+
 @keyframes flicker {
   0% {
     transform: translateX(-50%) scale(1) rotate(-2deg);
@@ -929,7 +955,7 @@ button {
 .message-panel {
   margin-top: 26px;
   max-width: 560px;
-  padding: 26px 30px;
+  padding: 20px 24px;
   border-radius: 20px;
   background: rgba(253, 243, 231, 0.08);
   border: 1px solid rgba(253, 243, 231, 0.18);
@@ -939,6 +965,14 @@ button {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 1s ease, transform 1s var(--ease-soft);
+}
+
+.inspiration-label {
+  margin: 0 0 10px;
+  color: var(--gold-soft);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .19em;
 }
 
 .message-panel.is-visible {
@@ -961,11 +995,11 @@ button {
 .wish {
   font-family: var(--font-script);
   font-style: italic;
-  font-size: clamp(1rem, 2.4vw, 1.25rem);
-  line-height: 1.85;
+  font-size: clamp(.95rem, 1.8vw, 1.1rem);
+  line-height: 1.6;
   color: var(--cream);
   white-space: pre-line;
-  min-height: 8em;
+  min-height: 0;
 }
 
 .wish .cursor {
@@ -974,6 +1008,210 @@ button {
   background: var(--gold-soft);
   margin-left: 2px;
   animation: blink 0.9s steps(1) infinite;
+}
+
+.wish-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+  margin-top: 17px;
+  padding: 12px 18px;
+  border: 1px solid rgba(249, 223, 160, .55);
+  border-radius: 999px;
+  color: var(--cream);
+  background: rgba(253, 243, 231, .08);
+  font-size: .8rem;
+  transition: opacity .7s ease, transform .7s var(--ease-soft), background .2s ease, border-color .2s ease;
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.wish-action.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wish-action:hover,
+.wish-action:focus-visible {
+  border-color: var(--gold-soft);
+  background: rgba(253, 243, 231, .16);
+}
+
+.wish-action-icon {
+  color: var(--gold-soft);
+  font-size: 1.1rem;
+}
+
+.wish-action.wish-is-made {
+  color: var(--gold-soft);
+}
+
+.memory-gallery {
+  width: 100%;
+  max-width: 490px;
+  justify-self: center;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .85s ease, transform .85s var(--ease-soft);
+}
+
+.memory-gallery.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.memory-heading {
+  margin: 0 0 15px;
+  text-align: left;
+}
+
+.memory-kicker {
+  margin: 0 0 5px;
+  color: var(--gold-soft);
+  font-size: .58rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+}
+
+.memory-heading h2 {
+  margin: 0;
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.3vw, 1.75rem);
+  font-weight: 500;
+}
+
+.memory-heading em {
+  color: var(--gold-soft);
+  font-weight: 400;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.memory-photo {
+  position: relative;
+  min-width: 0;
+  height: clamp(135px, 19vh, 190px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(249, 223, 160, .25);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .08);
+  text-align: left;
+}
+
+.memory-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .55s var(--ease-soft);
+}
+
+.memory-photo:hover img,
+.memory-photo:focus-visible img {
+  transform: scale(1.05);
+}
+
+.memory-photo::after {
+  position: absolute;
+  inset: 35% 0 0;
+  content: '';
+  background: linear-gradient(transparent, rgba(27, 15, 51, .82));
+}
+
+.memory-photo span {
+  position: absolute;
+  z-index: 1;
+  right: 9px;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-family: var(--font-script);
+  font-size: .92rem;
+  text-shadow: 0 1px 7px rgba(0, 0, 0, .4);
+}
+
+.photo-lightbox {
+  position: fixed;
+  width: min(90vw, 660px);
+  max-width: none;
+  max-height: 90vh;
+  padding: 52px 58px 20px;
+  overflow: visible;
+  border: 1px solid rgba(249, 223, 160, .38);
+  border-radius: 16px;
+  color: var(--cream);
+  background: #24143a;
+}
+
+.photo-lightbox::backdrop {
+  background: rgba(12, 8, 20, .86);
+  backdrop-filter: blur(8px);
+}
+
+.photo-lightbox figure {
+  margin: 0;
+  text-align: center;
+}
+
+.photo-lightbox figure img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: min(68vh, 650px);
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.photo-lightbox figcaption {
+  margin-top: 12px;
+  color: var(--gold-soft);
+  font-family: var(--font-script);
+  font-size: 1.15rem;
+}
+
+.lightbox-close,
+.lightbox-step {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(249, 223, 160, .4);
+  border-radius: 50%;
+  color: var(--cream);
+  background: rgba(255, 255, 255, .08);
+  font-size: 1.35rem;
+}
+
+.lightbox-close {
+  top: 12px;
+  right: 13px;
+}
+
+.lightbox-step {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-previous {
+  left: 11px;
+}
+
+.lightbox-next {
+  right: 11px;
+}
+
+.lightbox-close:hover,
+.lightbox-step:hover {
+  background: rgba(255, 255, 255, .18);
 }
 
 @keyframes blink {
@@ -1124,6 +1362,37 @@ button {
 
   .message-panel {
     padding: 20px 18px;
+  }
+
+  .surprise-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .memory-gallery {
+    max-width: 440px;
+  }
+
+  .memory-photo {
+    height: clamp(145px, 23vh, 210px);
+  }
+
+  .scene--surprise.is-active {
+    padding-top: 38px;
+    padding-bottom: 210px;
+  }
+
+  .photo-lightbox {
+    width: calc(100vw - 28px);
+    padding: 48px 42px 17px;
+  }
+
+  .lightbox-previous {
+    left: 5px;
+  }
+
+  .lightbox-next {
+    right: 5px;
   }
 
   .signature {
